@@ -1,11 +1,15 @@
 'use strict'
 
 const restify = require('restify')
-const server = restify.createServer()
+const routes = require('./routes/router.js')
+const port = 8080
 
-server.get('/test', (req, res, next) => {
-	res.send('Hello world!')
-	next()
+const server = restify.createServer({
+	name: 'API Training',
+	version: '1.0.0'
 })
 
-server.listen(8080, () => console.log(`${server.name} is listening at ${server.url}`))
+// router.applyRoutes(server, '/')
+routes(server)
+
+server.listen(port, () => console.log(`${server.name} is listening at ${server.url}`))
