@@ -21,8 +21,8 @@
   },
   "homepage": "https://github.com/1dv527/el223nc-examination-2#readme",
   "dependencies": {
-    "restify": "^7.7.0",
-    "restify-better-router": "^1.0.3"
+    "jsonwebtoken": "^8.4.0",
+    "restify": "^7.7.0"
   },
   "devDependencies": {
     "eslint": "^5.13.0",
