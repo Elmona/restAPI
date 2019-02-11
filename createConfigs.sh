@@ -21,11 +21,13 @@ elif [ "$1" == "prod" ]; then
   MONGO_USERNAME=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 12 | head -n 1)
   MONGO_PASSWORD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 15 | head -n 1)
   JWT_SECRET=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 30 | head -n 1)
+  NODE_ENV=production
 elif [ "$1" == 'dev' ]; then
   echo "Creating development credentials."
   MONGODB_USERNAME=dev
   MONGODB_PASSWORD=password
   JWT_SECRET=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 30 | head -n 1)
+  NODE_ENV=development
 else
   echo "Unknown parameter"
   echo "prod  for production"
@@ -38,6 +40,8 @@ cat > .env <<EOF
 # MongoDB
 MONGO_USER=$MONGODB_USERNAME
 MONGO_PASSWORD=$MONGODB_PASSWORD
+
+NODE_ENV=$NODE_ENV
 
 # Json webtoken secret
 JWT_SECRET=$JWT_SECRET
