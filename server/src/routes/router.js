@@ -13,7 +13,6 @@ const router = server => {
   server.post('/users', joiMiddleware(addUserSchema), addUsers)
   server.get('/users/:name', getUsers)
   server.post('/users/login', joiMiddleware(loginSchema), login)
-
   server.get('/', root)
 }
 

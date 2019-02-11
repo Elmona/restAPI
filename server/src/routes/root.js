@@ -6,7 +6,7 @@ const root = (req, res, next) => {
     dataLinks: {
       users: `https://${req.headers.host}/users`,
       login: `https://${req.headers.host}/users/login`,
-      blaha: `https://${req.headers.host}/blaha`
+      training: `https://${req.headers.host}/training`
     }
   })
 }

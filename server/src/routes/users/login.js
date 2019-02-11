@@ -8,7 +8,9 @@ const login = (req, res, next) => {
       .then(token => res.json(200, { token: token }))
   } else {
     console.log('Invalid username/password supplied')
-    res.json(403, { message: 'Invalid username/password supplied' })
+    res.json(403, {
+      message: 'Error login',
+      error: 'Invalid username or password supplied' })
   }
 }
 
