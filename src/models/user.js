@@ -12,7 +12,7 @@ const saltRounds = 10
  * @param {string} str - string to check.
  * @returns {boolean} - boolean if pass test
  */
-const validateName = str => /^[a-zA-Z-0-9_åÅäÄöÖ]{3,10}$/.test(str)
+const validateName = str => /^[a-zA-Z-0-9_åÅäÄöÖ]{3,30}$/.test(str)
 
 const userSchema = new Schema({
   date: {
