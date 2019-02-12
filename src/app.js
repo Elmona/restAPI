@@ -9,7 +9,7 @@ const port = process.env.PORT | 8080
 
 mongoose.run().catch(err => {
   console.log(err)
-  // process.exit(1)
+  mongoose.run()
 })
 
 const server = restify.createServer({
