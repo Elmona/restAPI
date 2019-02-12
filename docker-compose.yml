@@ -13,17 +13,19 @@ services:
       - PORT=8080
       - APP_NAME=api-server
       - SERVER_ROOT=.
-      - MONGODB_URI=mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@api-db:27017/api-db?authSource=admin
+      - MONGODB_URI=mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@api-db:27017/api
       - CHOKIDAR_USEPOLLING=true
       - JWT_SECRET=${JWT_SECRET}
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
   mongo:
-    image: clutteredcode/mongo-alpine
+    image: 'bitnami/mongodb:latest' 
     environment:
-      - MONGO_USERNAME=${MONGO_USERNAME}
-      - MONGO_PASSWORD=${MONGO_PASSWORD}
+      - MONGODB_USERNAME=${MONGO_USERNAME}
+      - MONGODB_PASSWORD=${MONGO_PASSWORD}
+      - MONGODB_ROOT_PASSWORD=${MONGO_ROOT}
+      - MONGODB_DATABASE=api
     container_name: api-db
     expose:
       - "27017"
