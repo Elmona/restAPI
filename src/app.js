@@ -4,6 +4,7 @@ const restify = require('restify')
 const routes = require('./routes/router.js')
 const mongoose = require('./config/mongoose')
 
+console.log(process.env.MONGODB_URI)
 const port = process.env.PORT | 8080
 
 mongoose.run().catch(err => {

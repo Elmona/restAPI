@@ -12,4 +12,5 @@ EXPOSE 8080
 
 RUN apk del native-deps
 
-CMD ["npm", "start"]
+COPY ./entrypoint.sh /
+ENTRYPOINT ["/entrypoint.sh"]
