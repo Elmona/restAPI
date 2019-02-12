@@ -2,7 +2,14 @@
 
 const restify = require('restify')
 const routes = require('./routes/router.js')
-const port = 8080
+const mongoose = require('./config/mongoose')
+
+const port = process.env.PORT | 8080
+
+mongoose.run().catch(err => {
+  console.log(err)
+  process.exit(1)
+})
 
 const server = restify.createServer({
   name: 'API Training',
