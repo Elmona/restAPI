@@ -20,6 +20,10 @@ module.exports.run = () => {
         process.exit(0)
       })
     })
-    resolve(mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }))
+    resolve(mongoose.connect(process.env.MONGODB_URI, {
+      reconnectTries: 100,
+      reconnectInterval: 500,
+      useNewUrlParser: true
+    }))
   })
 }
