@@ -1,30 +1,30 @@
 #!/bin/sh
-# HOST='http://localhost:8080'
-HOST='https://api.gosemojs.org'
+HOST='http://localhost:8080'
+# HOST='https://api.gosemojs.org'
 
-# Getting root
-curl -s $HOST | jq 
+# # Getting root
+# curl -s $HOST | jq 
 
 # Correct login
-curl -X POST -s \
+curl -X POST -v \
   -d '{"username":"Elmona","password":"testar"}' \
   -H "Content-Type: application/json" \
   $HOST/users/login
 
-# Fail login
-curl -X POST -s \
-  -d '{"username":"Elmona","password":"testaisdf"}' \
-  -H "Content-Type: application/json" \
-  $HOST/users/login
+# # Fail login
+# curl -X POST -s \
+  # -d '{"username":"Elmona","password":"testaisdf"}' \
+  # -H "Content-Type: application/json" \
+  # $HOST/users/login|jq
 
-# Get user
-curl -X GET -s \
-  $HOST/users/Elmona
+# # Get user
+# curl -X GET -s \
+  # $HOST/users/Elmona|jq
 
-Adding user
-curl -X POST -s \
-  -d '{"username":"Elmona","password":"testar", "email":"root@localhost.se"}' \
-  -H "Content-Type: application/json" \
-  $HOST/users
+# # Adding user
+# curl -X POST -s \
+  # -d '{"username":"Elmona4","password":"testar", "email":"root@localhost.se"}' \
+  # -H "Content-Type: application/json" \
+  # $HOST/users|jq
 
 

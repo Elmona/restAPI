@@ -6,5 +6,7 @@ if [ "$NODE_ENV" == "development" ]
 then
   npm run dev
 else
+  # Let the Database start before running the node application.
+  sleep 5
   npm run start
 fi

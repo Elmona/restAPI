@@ -9,7 +9,7 @@ const joiMiddleware = (schema, property) => {
       next()
     } else {
       res.json(422, {
-        message: 'Invalid request',
+        message: 'Error - Invalid request',
         error: error.message
       })
     }

@@ -19,7 +19,7 @@ const userSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  name: {
+  username: {
     type: String,
     required: 'Username is required.',
     validate: [validateName, '\nUsername may only contain numbers, lowercase and uppercase letters.\nIt must be between 3 to 10 characters long.'],
@@ -32,10 +32,7 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: 'Email is required.'
-  },
-  friends: [{
-    type: String
-  }]
+  }
 })
 
 /**
