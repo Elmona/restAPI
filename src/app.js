@@ -23,6 +23,7 @@ server.use(restify.plugins.throttle({
   ip: true
 }))
 
+// TODO: Maybe change to only application/json
 server.use(restify.plugins.acceptParser(server.acceptable))
 server.use(restify.plugins.bodyParser())
 server.use(restify.plugins.queryParser())

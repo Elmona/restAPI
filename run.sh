@@ -6,10 +6,10 @@ HOST='http://localhost:8080'
 # curl -s $HOST | jq 
 
 # Correct login
-curl -X POST -v \
+curl -X POST -s \
   -d '{"username":"Elmona","password":"testar"}' \
   -H "Content-Type: application/json" \
-  $HOST/users/login
+  $HOST/users/login|jq
 
 # # Fail login
 # curl -X POST -s \

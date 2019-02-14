@@ -21,14 +21,12 @@ elif [ "$1" == "prod" ]; then
   MONGO_USERNAME=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 12 | head -n 1)
   MONGO_PASSWORD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 15 | head -n 1)
   MONGO_ROOT=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 15 | head -n 1)
-  JWT_SECRET=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 30 | head -n 1)
   NODE_ENV=production
 elif [ "$1" == 'dev' ]; then
   echo "Creating development credentials."
   MONGO_USERNAME=dev
   MONGO_PASSWORD=password
   MONGO_ROOT=password
-  JWT_SECRET=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 30 | head -n 1)
   NODE_ENV=development
 else
   echo "Unknown parameter"
@@ -36,6 +34,10 @@ else
   echo "dev   for development"
   exit
 fi
+
+mkdir cert
+openssl genpkey -algorithm RSA -out ./cert/private_key.pem -pkeyopt rsa_keygen_bits:2048
+openssl rsa -pubout -in ./cert/private_key.pem -out ./cert/public_key.pem
 
 cat > .env <<EOF
 #!/usr/bin/env bash
