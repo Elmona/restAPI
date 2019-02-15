@@ -6,10 +6,11 @@ const certPrivate = fs.readFileSync('./cert/private_key.pem')
 
 const verify = token => {
   return new Promise((resolve, reject) => {
-    jwt.verify(token, certPublic, (err, decoded) => {
-      if (err) return reject(err)
-      if (decoded) return resolve(decoded.user)
-    })
+    jwt.verify(token, certPublic, { algorithm: 'RS256' },
+      (err, decoded) => {
+        if (err) return reject(err)
+        if (decoded) return resolve(decoded.user)
+      })
   })
 }
 
@@ -18,7 +19,7 @@ const sign = username => {
     jwt.sign({
       issuer: 'Elmona',
       user: username
-    }, certPrivate, { expiresIn: '2 hours' },
+    }, certPrivate, { expiresIn: '2 hours', algorithm: 'RS256' },
     (err, token) => {
       if (err) return reject(err)
       return resolve(token)

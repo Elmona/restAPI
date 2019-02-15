@@ -6,20 +6,24 @@ HOST='http://localhost:8080'
 # curl -s $HOST | jq 
 
 # Correct login
-curl -X POST -s \
+token=$(curl -X POST -s \
   -d '{"username":"Elmona","password":"testar"}' \
   -H "Content-Type: application/json" \
-  $HOST/users/login|jq
+  $HOST/users/login|jq -r .token)
+
+echo $token
+
+# Get user
+curl -X GET -s \
+  -H "Content-Type: application/json" \
+  -H "Authorization: $token" \
+  $HOST/users/Elmona|jq
 
 # # Fail login
 # curl -X POST -s \
   # -d '{"username":"Elmona","password":"testaisdf"}' \
   # -H "Content-Type: application/json" \
   # $HOST/users/login|jq
-
-# # Get user
-# curl -X GET -s \
-  # $HOST/users/Elmona|jq
 
 # # Adding user
 # curl -X POST -s \
