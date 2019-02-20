@@ -2,7 +2,14 @@
 
 const Joi = require('joi')
 
-const joiMiddleware = (schema, property) => {
+/**
+ * joiMiddleware
+ * Middleware to validate incoming schema
+ *
+ * @param {Object} schema
+ * @returns {Function}
+ */
+const joiMiddleware = schema => {
   return (req, res, next) => {
     try {
       if (req.body === undefined) {
