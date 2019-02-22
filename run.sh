@@ -27,7 +27,7 @@ echo "Get user"
 # Get user
 curl -X GET -s \
   -H "Content-Type: application/json" \
-  -H "Authorization: $token" \
+  -H "Authorization: Bearer $token" \
   $HOST/users/Elmona|jq
 
 # echo "Fail login"

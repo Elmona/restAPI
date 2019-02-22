@@ -18,9 +18,9 @@ const login = require('./users/login.js')
  */
 const router = server => {
   server.get('/', root)
+
   server.post('/users', joiMiddleware(addUserSchema), addUsers)
   server.post('/users/login', joiMiddleware(loginSchema), login)
-
   server.get('/users/:name', authorizeMiddleware, getUsers)
 }
 
