@@ -11,9 +11,8 @@ const User = require('../../models/user.js')
  *
  * @param {Object} req
  * @param {Object} res
- * @param {Object} next
  */
-const login = (req, res, next) => {
+const login = (req, res) => {
   const { username, password } = req.body
 
   User.findOne({ username: username })

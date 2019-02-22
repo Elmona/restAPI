@@ -1,9 +1,10 @@
 'use strict'
 
-const joiMiddleware = require('../lib/joiMiddleware')
-const addUserSchema = require('../lib/addUserSchema')
-const loginSchema = require('../lib/loginSchema')
-const authorizeMiddleware = require('../lib/authorizeMiddleware')
+const addUserSchema = require('../models/joi/addUserSchema')
+const loginSchema = require('../models/joi/loginSchema')
+
+const authorizeMiddleware = require('../middleware/authorizeMiddleware')
+const joiMiddleware = require('../middleware/joiMiddleware')
 
 const root = require('./root.js')
 const getUsers = require('./users/getUsers.js')
@@ -13,7 +14,7 @@ const login = require('./users/login.js')
 /**
  * Main router
  *
- * @param {object} server
+ * @param {Object} server
  */
 const router = server => {
   server.get('/', root)

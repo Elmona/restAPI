@@ -50,6 +50,12 @@ userSchema.pre('save', function (next) {
     .catch(e => console.log(e))
 })
 
+/**
+ * comparePassword
+ *
+ * @param candidatePassword
+ * @returns {Boolean}
+ */
 userSchema.methods.comparePassword = function (candidatePassword) {
   return bcrypt.compare(candidatePassword, this.password)
 }

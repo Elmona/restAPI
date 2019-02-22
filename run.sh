@@ -6,22 +6,22 @@ clear
 echo 'Running script'
 echo
 
-# #jGetting root
+# # Getting root
 # curl -s $HOST | jq 
 
-curl -X POST -s \
+# curl -X POST -s \
+  # -d '{"username":"Elmona","password":"testar"}' \
+  # -H "Content-Type: application/json" \
+  # $HOST/users/login
+
+# Correct login
+token=$(curl -X POST -s \
   -d '{"username":"Elmona","password":"testar"}' \
   -H "Content-Type: application/json" \
-  $HOST/users/login
-# Correct login
-
-# token=$(curl -X POST -s \
-  # -d '{"username":"Elmona","password":"testa"}' \
-  # -H "Content-Type: application/json" \
-  # $HOST/users/login|jq -r .token)
+  $HOST/users/login|jq -r .token)
 
 echo "Token: $token"
-echo
+# echo
 
 echo "Get user"
 # Get user

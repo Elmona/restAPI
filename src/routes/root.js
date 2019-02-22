@@ -5,9 +5,8 @@
  *
  * @param {object} req
  * @param {object} res
- * @param {object} next
  */
-const root = (req, res, next) => {
+const root = (req, res) => {
   res.json({
     title: 'RESTful API for saving your training exercises',
     dataLinks: {

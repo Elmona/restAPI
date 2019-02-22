@@ -9,16 +9,22 @@ const jwt = require('../lib/jwt')
  * If found and correct call next()
  * Else render Error
  *
- * @param {object} req
- * @param {object} res
- * @param {object} next
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Function} next
  */
 const authorizeMiddleware = (req, res, next) => {
   const { authorization } = req.headers
 
   jwt.verify(authorization)
-    .then(res => next())
-    .catch(() => res.json(401, { Error: 'Invalid token' }))
+    .then(name => {
+      req.jwtUsername = name
+      next()
+    })
+    .catch(e => {
+      console.log(`Error: ${e.message}`)
+      res.json(401, { Error: 'Invalid token' })
+    })
 }
 
 module.exports = authorizeMiddleware
