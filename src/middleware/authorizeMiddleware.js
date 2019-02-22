@@ -14,7 +14,10 @@ const jwt = require('../lib/jwt')
  * @param {Function} next
  */
 const authorizeMiddleware = (req, res, next) => {
-  const { authorization } = req.headers
+  let { authorization } = req.headers
+
+  authorization = authorization.replace('Bearer ', '')
+  authorization = authorization.replace('JWT ', '')
 
   jwt.verify(authorization)
     .then(name => {
