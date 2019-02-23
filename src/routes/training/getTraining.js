@@ -1,30 +1,24 @@
 'use strict'
 
-const User = require('../../models/user.js')
+const Training = require('../../models/training.js')
 
 /**
- * users
- * Get user
+ * training
+ * Get training
  *
- * @param req
- * @param res
+ * @param {Object} req
+ * @param {Object} res
  */
-const users = (req, res) => {
-  User.findOne({ username: req.params.name })
-    .then(user => {
-      if (user.username === req.jwtUsername) {
-        res.json({
-          username: user.username,
-          email: user.email,
-          date: user.date
-        })
-      } else {
-        throw new Error()
-      }
-    }).catch(e => {
-      console.log(`Error: Forbidden}`)
-      res.json(403, { Error: 'Forbidden' })
+const training = (req, res) => {
+  Training.find({})
+    .then(data => {
+      res.json({
+        data: data
+      })
+    }).catch(err => {
+      console.log(`Error: ${err}`)
+      res.json(500, { Error: 'Unknown error' })
     })
 }
 
-module.exports = users
+module.exports = training

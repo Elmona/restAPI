@@ -22,7 +22,7 @@ const users = (req, res) => {
         throw new Error()
       }
     }).catch(e => {
-      console.log(`Error: Forbidden}`)
+      console.log(`Error: Forbidden`)
       res.json(403, { Error: 'Forbidden' })
     })
 }

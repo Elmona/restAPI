@@ -7,7 +7,7 @@ const User = require('../../models/user.js')
  * login
  * Check username in database
  * If correct create and send JWT
- * else respond with 403.
+ * else respond with 401.
  *
  * @param {Object} req
  * @param {Object} res
@@ -20,7 +20,7 @@ const login = (req, res) => {
     .then(match => {
       if (match === false) throw new Error()
 
-      return jwt.sign(req.body.username)
+      return jwt.sign(username)
     }).then(token => res.json(200, { token: token }))
     .catch(e => res.json(401, { error: 'Unauthorized' }))
 }

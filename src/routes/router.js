@@ -3,6 +3,7 @@
 const addUserSchema = require('../models/joi/addUserSchema')
 const loginSchema = require('../models/joi/loginSchema')
 const addTraining = require('../models/joi/addTraining')
+const deleteTrainingJOI = require('../models/joi/deleteTraining')
 
 const authorizeMiddleware = require('../middleware/authorizeMiddleware')
 const joiMiddleware = require('../middleware/joiMiddleware')
@@ -15,6 +16,7 @@ const login = require('./users/login.js')
 
 const getTraining = require('./training/getTraining.js')
 const postTraining = require('./training/postTraining.js')
+const deleteTraining = require('./training/deleteTraining.js')
 
 /**
  * Main router
@@ -28,8 +30,9 @@ const router = server => {
   server.post('/users/login', joiMiddleware(loginSchema), login)
   server.get('/users/:name', authorizeMiddleware, getUsers)
 
-  server.get('/training/:id', authorizeMiddleware, getTraining)
   server.post('/training', authorizeMiddleware, joiMiddleware(addTraining), postTraining)
+  server.get('/training', authorizeMiddleware, getTraining)
+  server.del('/training', authorizeMiddleware, joiMiddleware(deleteTrainingJOI), deleteTraining)
 }
 
 module.exports = router

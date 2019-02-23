@@ -15,7 +15,6 @@ const joiMiddleware = schema => {
       if (req.body === undefined) {
         throw new Error('Body is empty')
       }
-      console.log(req.body)
 
       const { error } = Joi.validate(req.body, schema)
       if (error === null) {
