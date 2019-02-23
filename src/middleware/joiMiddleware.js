@@ -4,7 +4,7 @@ const Joi = require('joi')
 
 /**
  * joiMiddleware
- * Middleware to validate incoming schema
+ * Middleware to validate incoming json
  *
  * @param {Object} schema
  * @returns {Function}
@@ -15,6 +15,7 @@ const joiMiddleware = schema => {
       if (req.body === undefined) {
         throw new Error('Body is empty')
       }
+      console.log(req.body)
 
       const { error } = Joi.validate(req.body, schema)
       if (error === null) {

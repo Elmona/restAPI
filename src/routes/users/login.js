@@ -22,7 +22,7 @@ const login = (req, res) => {
 
       return jwt.sign(req.body.username)
     }).then(token => res.json(200, { token: token }))
-    .catch(e => res.json(403, { error: 'Invalid username/password supplied' }))
+    .catch(e => res.json(401, { error: 'Unauthorized' }))
 }
 
 module.exports = login

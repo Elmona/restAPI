@@ -1,13 +1,13 @@
 #!/bin/bash
 HOST='http://localhost:8080'
-# HOST='https://api.gosemojs.org'
+  HOST='https://api.gosemojs.org'
 
 clear
 echo 'Running script'
 echo
 
-# # Getting root
-# curl -s $HOST | jq 
+# Getting root
+curl -s $HOST | jq 
 
 # curl -X POST -s \
   # -d '{"username":"Elmona","password":"testar"}' \
@@ -23,12 +23,24 @@ token=$(curl -X POST -s \
 echo "Token: $token"
 # echo
 
-echo "Get user"
-# Get user
-curl -X GET -s \
+startTime=$(date -u)
+endTime=$(date -d '+1 hour' -u)
+body="{\"username\":\"Elmona\",\"type\":\"Running\",\"length\":\"100\",\"startTime\":\"$startTime\",\"endTime\":\"$endTime\",\"comment\":\"sdflk\"}" 
+
+echo "Add Training"
+# Post training
+curl -X POST -s \
   -H "Content-Type: application/json" \
+  -d "$body" \
   -H "Authorization: Bearer $token" \
-  $HOST/users/Elmona|jq
+  $HOST/training|jq
+
+# echo "Get user"
+# # Get user
+# curl -X GET -s \
+  # -H "Content-Type: application/json" \
+  # -H "Authorization: Bearer $token" \
+  # $HOST/users/Elmona|jq
 
 # echo "Fail login"
 # # Fail login
