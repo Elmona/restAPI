@@ -2,10 +2,8 @@
 
 const addUserSchemaJOI = require('../models/joi/addUserSchema')
 const loginSchemaJOI = require('../models/joi/loginSchema')
-
 const addTrainingJOI = require('../models/joi/addTraining')
 const mongoidJOI = require('../models/joi/mongoid')
-
 const addHooksJOI = require('../models/joi/addHooks')
 
 const authorizeMiddleware = require('../middleware/authorizeMiddleware')
