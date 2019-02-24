@@ -12,7 +12,8 @@ const addUsers = (req, res, next) => {
         data: body
       })
     }).catch(err => {
-      res.json({
+      const errCode = err.code === 11000 ? 409 : 500
+      res.json(errCode, {
         message: 'Error',
         error: err.code === 11000 ? 'Username already taken' : 'Unknown error'
       })

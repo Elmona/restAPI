@@ -8,10 +8,76 @@
  */
 const root = (req, res) => {
   res.json({
-    title: 'RESTful API for saving your training exercises',
-    users: `https://${req.headers.host}/users`,
-    login: `https://${req.headers.host}/users/login`,
-    training: `https://${req.headers.host}/training`
+    meta: {
+      title: 'RESTful API for saving your training exercises',
+      license: 'MIT',
+      author: 'Emil Larsson'
+    },
+    links: {
+      self: {
+        href: `https://${req.headers.host}/`,
+        method: 'GET',
+        desc: 'Root'
+      },
+      users: {
+        register: {
+          href: `https://${req.headers.host}/users`,
+          method: 'POST',
+          desc: 'Register user: username, password, email in body as JSON'
+        },
+        login: {
+          href: `https://${req.headers.host}/users/login`,
+          method: 'POST',
+          desc: 'Login: username, password in body as JSON'
+        },
+        view: {
+          href: `https://${req.headers.host}/users`,
+          method: 'GET',
+          authentication: 'true',
+          desc: 'View registered user'
+        }
+      },
+      training: {
+        view: {
+          href: `https://${req.headers.host}/training`,
+          method: 'GET',
+          authentication: 'true',
+          desc: 'Get training'
+        },
+        add: {
+          href: `https://${req.headers.host}/training`,
+          method: 'POST',
+          authentication: 'true',
+          desc: 'Add training: type, length, startTime, endTime, comment in body as JSON'
+        },
+        delete: {
+          href: `https://${req.headers.host}/training`,
+          method: 'DELETE',
+          authentication: 'true',
+          desc: 'Delete training: id in body as JSON'
+        }
+      },
+      hooks: {
+        view: {
+          href: `https://${req.headers.host}/hooks`,
+          method: 'GET',
+          authentication: 'true',
+          desc: 'Get registered hooks'
+        },
+        add: {
+          href: `https://${req.headers.host}/hooks`,
+          method: 'POST',
+          authentication: 'true',
+          desc: 'Add hook: url in body as JSON'
+        },
+        delete: {
+          href: `https://${req.headers.host}/hooks`,
+          method: 'DELETE',
+          authentication: 'true',
+          desc: 'Delete hook: id in body as JSON'
+        }
+      }
+    }
   })
 }
 
