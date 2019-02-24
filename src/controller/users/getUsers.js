@@ -12,7 +12,11 @@ const User = require('../../models/user.js')
 const users = (req, res) => {
   User.findOne({ username: req.params.name })
     .then(user => {
-      if (user.username === req.jwtUsername) {
+      if (user === null) {
+        res.json(404, {
+          error: 'User not found'
+        })
+      } else if (user.username === req.jwtUsername) {
         res.json({
           username: user.username,
           email: user.email,
@@ -22,7 +26,6 @@ const users = (req, res) => {
         throw new Error()
       }
     }).catch(e => {
-      console.log(`Error: Forbidden`)
       res.json(403, { Error: 'Forbidden' })
     })
 }

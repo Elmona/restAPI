@@ -4,7 +4,7 @@ const Joi = require('joi')
 
 /**
  * joiMiddleware
- * Middleware to validate incoming json
+ * Middleware to validate incoming body
  *
  * @param {Object} schema
  * @returns {Function}
