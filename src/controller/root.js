@@ -35,6 +35,12 @@ const root = (req, res) => {
           method: 'GET',
           authentication: 'true',
           desc: 'View registered user'
+        },
+        delete: {
+          href: `https://${req.headers.host}/users`,
+          method: 'DELETE',
+          authentication: 'true',
+          desc: 'Delete user'
         }
       },
       training: {

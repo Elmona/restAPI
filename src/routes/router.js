@@ -15,6 +15,7 @@ const root = require('../controller/root.js')
 
 const getUsers = require('../controller/users/getUsers.js')
 const addUsers = require('../controller/users/addUsers.js')
+const deleteUsers = require('../controller/users/deleteUsers.js')
 const login = require('../controller/users/login.js')
 
 const getTraining = require('../controller/training/getTraining.js')
@@ -36,6 +37,7 @@ const router = server => {
   server.post('/users', joiMiddleware(addUserSchemaJOI), addUsers)
   server.post('/users/login', joiMiddleware(loginSchemaJOI), login)
   server.get('/users/:name', authorizeMiddleware, getUsers)
+  server.del('/users', authorizeMiddleware, deleteUsers)
 
   server.post('/training', authorizeMiddleware, joiMiddleware(addTrainingJOI), postTraining)
   server.get('/training', authorizeMiddleware, getTraining)
