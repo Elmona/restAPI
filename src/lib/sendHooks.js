@@ -16,7 +16,7 @@ const sendHooks = body => {
     .then(data => data.map(d =>
       fetch(d.url, {
         headers: {
-          'Content-Type': 'application-json',
+          'Content-Type': 'application/json',
           'X-Hub-Signature': createComparisionSignature(body, d.key)
         },
         method: 'POST',

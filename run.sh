@@ -19,17 +19,17 @@ token=$(curl -X POST -s \
 echo "Token: $token"
 # echo
 
-# startTime=$(date -u)
-# endTime=$(date -d '+1 hour' -u)
-# body="{\"username\":\"Elmona\",\"type\":\"Running\",\"length\":\"100\",\"startTime\":\"$startTime\",\"endTime\":\"$endTime\",\"comment\":\"sdflk\"}" 
+startTime=$(date -u)
+endTime=$(date -d '+1 hour' -u)
+body="{\"username\":\"Elmona\",\"type\":\"Running\",\"length\":\"100\",\"startTime\":\"$startTime\",\"endTime\":\"$endTime\",\"comment\":\"sdflk\"}" 
 
-# echo "Add Training"
-# # Post training
-# curl -X POST -s \
-  # -H "Content-Type: application/json" \
-  # -d "$body" \
-  # -H "Authorization: Bearer $token" \
-  # $HOST/training|jq
+echo "Add Training"
+# Post training
+curl -X POST -s \
+  -H "Content-Type: application/json" \
+  -d "$body" \
+  -H "Authorization: Bearer $token" \
+  $HOST/training|jq
 
 # echo "Get Training"
 # # Post training
@@ -75,7 +75,7 @@ echo "Token: $token"
 
 # # Add Hook
 # curl -X POST -s \
-  # -d '{"url":"https://webhook.site/053c94e4-155d-49b2-a1c5-e533449d7396"}' \
+  # -d '{"url":"http://68131b3b.eu.ngrok.io/webHook"}' \
   # -H "Content-Type: application/json" \
   # -H "Authorization: Bearer $token" \
   # $HOST/hooks|jq
@@ -88,7 +88,13 @@ curl -X GET -s \
 
 # # Delete Hook
 # curl -X DELETE -s \
-  # -d '{"id":"5c72d5e700213300a6bbccc0"}' \
+  # -d '{"id":"5c72e2739e2e47018309f598"}' \
   # -H "Content-Type: application/json" \
   # -H "Authorization: JWT $token" \
   # $HOST/hooks|jq
+
+# # Delete user
+# curl -X DELETE -s \
+  # -H "Content-Type: application/json" \
+  # -H "Authorization: JWT $token" \
+  # $HOST/users|jq

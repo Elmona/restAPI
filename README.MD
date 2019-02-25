@@ -18,3 +18,32 @@ docker-compose up
 
 `creatConfigs.sh` will generate a `.env` file with random credentials in production and easy to type in development. In development it will start node with nodemon.
 The file will also generate a ssh key to sign/decode your JWT.
+
+## To validate incoming webhooks
+```JavaScript
+const crypto = require('crypto')
+const bodyParser = require('body-parser')
+const express = require('express')
+const app = express()
+app.use(bodyParser.json())
+
+const createComparisionSignature = (body, key) => {
+  const hmac = crypto.createHmac('sha1', key)
+  const self_signature = hmac.update(JSON.stringify(body)).digest('hex')
+  return `sha1=${self_signature}`
+}
+
+const compareSignatures = (signature, comparisonSignature) => {
+  const source = Buffer.from(signature)
+  const comparison = Buffer.from(comparisonSignature)
+  return crypto.timingSafeEqual(source, comparison) // constant time comparison
+}
+
+app.post('/webHook', (req, res) => {
+  signature = req.headers['x-hub-signature']
+  const controll = createComparisionSignature(req.body, process.env.KEY)
+  console.log(`Webhook is valid: ${compareSignatures(signature, controll)}`)
+})
+
+app.listen(3000)
+```

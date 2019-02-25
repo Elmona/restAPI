@@ -17,7 +17,9 @@ const postHooks = (req, res) => {
   body.username = req.jwtUsername
   body.key = crypto.randomBytes(32).toString('hex')
 
-  fetch(body.url).then(data => {
+  fetch(body.url, {
+    method: 'POST'
+  }).then(data => {
     new Hooks(body).save()
       .then(data => {
         res.json({
