@@ -20,8 +20,7 @@ docker-compose up
 The start-script will also generate a SSH key to sign/decode your JWT.
 
 ## Validate incoming webhooks
-If you want to validate the incoming webhook and verify that there was no tampering with a man in the middle attack, you can use this snippet.  
-Use the key provided when registering the hook and set in an `.env` file.
+If you want to validate the incoming webhook and verify that there was no tampering with a man in the middle attack, you can use this snippet. Use the key provided when registering the hook and set in an `.env` file.
 ```JavaScript
 const crypto = require('crypto')
 const bodyParser = require('body-parser')
