@@ -19,6 +19,12 @@ services:
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
+  fix-mongodb-permissions:
+    image: 'bitnami/mongodb:latest'
+    user: root
+    command: chown -R 1001:1001 /bitnami
+    volumes:
+      - "./data:/bitnami"
   mongo:
     image: 'bitnami/mongodb:latest' 
     environment:
@@ -30,4 +36,6 @@ services:
     expose:
       - "27017"
     volumes:
-      - ./data:/data/db
+      - ./data:/bitnami
+    depends_on:
+      - fix-mongodb-permissions
