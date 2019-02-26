@@ -7,6 +7,6 @@ then
   npm run dev
 else
   # Let the Database start before running the node application.
-  sleep 5
+  sleep 10 
   npm run start
 fi

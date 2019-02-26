@@ -10,7 +10,7 @@ const User = require('../../models/user.js')
  * @param res
  */
 const users = (req, res) => {
-  User.findOne({ username: req.params.name })
+  User.findOne({ username: req.jwtUsername })
     .then(user => {
       if (user === null) {
         res.json(404, {

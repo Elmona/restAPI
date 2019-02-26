@@ -20,7 +20,7 @@ const postTraining = (req, res) => {
         message: 'Resource created',
         body: body
       })
-      sendHooks()
+      sendHooks(body)
     })
     .catch(err => {
       console.log(`Error: ${err}`)
