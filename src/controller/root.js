@@ -12,7 +12,7 @@ const root = (req, res) => {
       title: 'RESTful API for saving your training exercises',
       license: 'MIT',
       author: 'Emil Larsson',
-      desc: 'JWT for authentication, login save your token. Set token in header authorization'
+      desc: 'JWT for authentication, login save your token. Set token in header as authorization'
     },
     links: {
       self: {

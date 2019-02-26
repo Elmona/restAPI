@@ -34,7 +34,7 @@ const router = server => {
 
   server.post('/users', joiMiddleware(addUserSchemaJOI), addUsers)
   server.post('/users/login', joiMiddleware(loginSchemaJOI), login)
-  server.get('/users/:name', authorizeMiddleware, getUsers)
+  server.get('/users', authorizeMiddleware, getUsers)
   server.del('/users', authorizeMiddleware, deleteUsers)
 
   server.post('/training', authorizeMiddleware, joiMiddleware(addTrainingJOI), postTraining)
