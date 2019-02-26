@@ -12,6 +12,8 @@ const Hooks = require('../models/hooks.js')
  */
 const sendHooks = body => {
   console.log('Sending hooks')
+  body.text = `${body.username} did ${body.Running}. Length was ${body.length}, startTime: ${body.startTime}, endTime: ${body.endTime} comment: ${body.comment}`
+
   Hooks.find({})
     .then(data => data.map(d =>
       fetch(d.url, {
