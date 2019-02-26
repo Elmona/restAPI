@@ -11,13 +11,14 @@ const root = (req, res) => {
     meta: {
       title: 'RESTful API for saving your training exercises',
       license: 'MIT',
-      author: 'Emil Larsson'
+      author: 'Emil Larsson',
+      desc: 'JWT for authentication, login save your token. Set token in header authorization'
     },
     links: {
       self: {
         href: `https://${req.headers.host}/`,
         method: 'GET',
-        desc: 'Root'
+        desc: 'Root: This url'
       },
       users: {
         register: {

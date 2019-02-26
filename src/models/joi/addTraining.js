@@ -2,6 +2,11 @@
 
 const Joi = require('joi')
 
+/**
+ * Validates addTraining
+ *
+ * @returns {Object}
+ */
 const addTraining = Joi.object().keys({
   username: Joi.string().alphanum().min(3).max(30).required(),
   type: Joi.string().min(2).max(200).required(),
