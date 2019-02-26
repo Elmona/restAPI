@@ -46,10 +46,10 @@ const root = (req, res) => {
       },
       training: {
         view: {
-          href: `https://${req.headers.host}/training`,
+          href: `https://${req.headers.host}/training?start=0&offset=20`,
           method: 'GET',
           authentication: 'true',
-          desc: 'Get training'
+          desc: 'Get training - You will get a nextURL for more data and you can change start and offset if you like.'
         },
         add: {
           href: `https://${req.headers.host}/training`,
