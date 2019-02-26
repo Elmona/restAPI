@@ -16,18 +16,22 @@ const jwt = require('../lib/jwt')
 const authorizeMiddleware = (req, res, next) => {
   let { authorization } = req.headers
 
-  authorization = authorization.replace('Bearer ', '')
-  authorization = authorization.replace('JWT ', '')
+  if (authorization === undefined) {
+    res.json(401, { Error: 'Invalid token' })
+  } else {
+    authorization = authorization.replace('Bearer ', '')
+    authorization = authorization.replace('JWT ', '')
 
-  jwt.verify(authorization)
-    .then(name => {
-      req.jwtUsername = name
-      next()
-    })
-    .catch(e => {
-      console.log(`Error: ${e.message}`)
-      res.json(401, { Error: 'Invalid token' })
-    })
+    jwt.verify(authorization)
+      .then(name => {
+        req.jwtUsername = name
+        next()
+      })
+      .catch(e => {
+        console.log(`Error: ${e.message}`)
+        res.json(401, { Error: 'Invalid token' })
+      })
+  }
 }
 
 module.exports = authorizeMiddleware
