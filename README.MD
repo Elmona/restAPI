@@ -2,6 +2,9 @@
 
 This is a RESTful API where you can add your training, you can also register a webhook getting notified when your friends made a new run.
 
+## Prerequisites
+* docker
+* docker-compose
 
 ### Get started production
 ```console
@@ -18,7 +21,7 @@ docker-compose up
 ```
 
 `creatConfigs.sh` will generate a `.env` file with random credentials in production and easy to type in development. In development it will start node with `nodemon`.
-The start-script will also generate a SSH key to sign/decode your JWT.
+The start-script will also generate a SSH key to sign/verify JWT.
 
 ## Validate incoming webhooks
 If you want to validate the incoming webhook and verify that there was no tampering, use this snippet. Use the key provided when registering the hook and set the value in a `.env` file.

@@ -12,7 +12,7 @@ const root = (req, res) => {
       title: 'RESTful API for saving your training exercises',
       license: 'MIT',
       author: 'Emil Larsson',
-      desc: 'JWT for authentication, login save your token. Set token in header as authorization'
+      desc: 'JWT for authentication, login save your token. Set token in headers as authorization'
     },
     links: {
       self: {
@@ -62,6 +62,12 @@ const root = (req, res) => {
           method: 'DELETE',
           authentication: 'true',
           desc: 'Delete training: id in body as JSON'
+        },
+        update: {
+          href: `https://${req.headers.host}/training`,
+          method: 'PUT',
+          authentication: 'true',
+          desc: 'Update training: id, type, length, startTime, endTime, comment in body as JSON. ID is required the other fields is optional'
         }
       },
       hooks: {
