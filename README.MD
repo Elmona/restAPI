@@ -124,7 +124,7 @@ Or I can have a specific tag in the URI telling the server what response it want
 #### Motivate and defend your authentication solution.
 For starters using JWT was required in this assignment. But I probably would have picked it anyway because I think it's a really good solution. The downside of JWT is that there is no good way to block JWT ones it's already created. One solution is too set the timeout of the JWT to a quite short time. Another solution is to have a blacklist of JWT, worst case scenario change the JWT secret and restart the server.
   
-Other solutions for authentication is OAuth, or maybe let the user send in username/password every time. When the user login returning a secret and use that for authentication.
+Other solutions for authentication is OAuth, or maybe let the user send in username/password every time. When the user login returning a secret and use that for authentication. I could also generate a random key when registering a new user and save it in the database making it work all the time without renewing.
   
 #### Explain how your webhook works.
 A logged-in user post to `https://api.gosemojs.org/hooks` providing the URI in the body as JSON. My server makes a request to the URI. If the server responds add it to the database and generate a random key and send it back to the user.
@@ -135,12 +135,19 @@ When a user adds some training the server get all registered hooks from the data
 Error handling, Now every route send errors and if I want to change something I have to remember all 30 places I did something. I beleive that a much better solution is to throw an error and let some code pick it up and return JSON and the right status code to the user. I could not get it to work the way I wanted with restify.
     
 I guess it is the same with a correct request that it would have been much better sending it through a view or something.
+  
+I could have done more with the Hateoas thinking, now the only url explaining stuff is the root url.
+  
+From start added support for versioning, but my thought process was that I did not wanted `/v1/` in the url and if I hade to make breaking change then added support for some header requring the new version of my API.
+  
 #### Did you do something extra besides the fundamental requirements? Explain them.
 The setup of the system is quite easy. I provide a bash-script generating `.env` with easy passwords in development and random in production. The script also creates ssh keys for signing/verifying JWTs. I also have a entry point script for starting Node to start it with nodemon in development and without in production.
   
 I learned how to make a subdomain `api.gosemojs.org` I already owned `gosemojs.org` and I wanted to learn how to make a subdomain and give it a certificate from letsencrypt.
   
 I beleive my REST API is kind of user-friendly because I use JOI as a middleware giving the user a lot of information about what I expect the user to send in and in what way I want the information.
+  
+Added support for not getting all the posts in running e.g `api.gosemojs.org/running?start=20&offset=20`. The route provides a link to next search result.
   
 When the user gets the webhook I implemented the same system as Github verifying that the hook was sent from the server and nothing else. An example of how to use it below.
   
