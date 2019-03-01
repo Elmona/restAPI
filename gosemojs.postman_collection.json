@@ -1,0 +1,659 @@
+{
+	"info": {
+		"_postman_id": "5ebe31cc-5fc5-f9ac-0b3c-e47f93f3d2e8",
+		"name": "gosemojs",
+		"description": "Restful api at api.gosemojs.org",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "gosemojs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "api.gosemojs.org",
+					"host": [
+						"api",
+						"gosemojs",
+						"org"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ca9b2937-0a29-4c55-a76c-929ae6d028ba",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "JWT {{token}}",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "root@localhost.se",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.gosemojs.org/users",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gosemojs",
+						"org"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ca9b2937-0a29-4c55-a76c-929ae6d028ba",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"token\", data.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"\",\n    \"password\": \"\"\n}"
+				},
+				"url": {
+					"raw": "https://api.gosemojs.org/users/login",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gosemojs",
+						"org"
+					],
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ca9b2937-0a29-4c55-a76c-929ae6d028ba",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "JWT {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://api.gosemojs.org/users",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gosemojs",
+						"org"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ca9b2937-0a29-4c55-a76c-929ae6d028ba",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "JWT {{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://api.gosemojs.org/users",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gosemojs",
+						"org"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Training",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ca9b2937-0a29-4c55-a76c-929ae6d028ba",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "JWT {{token}}"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "type",
+							"value": "Run",
+							"type": "text"
+						},
+						{
+							"key": "length",
+							"value": "10000",
+							"type": "text"
+						},
+						{
+							"key": "startTime",
+							"value": "Tue Mar 1 15:00:02 UTC 2019",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "endTime",
+							"value": "Tue Mar 1 16:10:02 UTC 2019",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "comment",
+							"value": "Var ganska tungt.",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "5c7638e01a9d760114bc0248",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/training",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"training"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Training",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ca9b2937-0a29-4c55-a76c-929ae6d028ba",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "JWT {{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://api.gosemojs.org/training",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gosemojs",
+						"org"
+					],
+					"path": [
+						"training"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Training",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ca9b2937-0a29-4c55-a76c-929ae6d028ba",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "JWT {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "type",
+							"value": "Running",
+							"type": "text"
+						},
+						{
+							"key": "length",
+							"value": "10000",
+							"type": "text"
+						},
+						{
+							"key": "startTime",
+							"value": "Tue Mar 1 15:00:02 UTC 2019",
+							"type": "text"
+						},
+						{
+							"key": "endTime",
+							"value": "Tue Mar 1 16:10:02 UTC 2019",
+							"type": "text"
+						},
+						{
+							"key": "comment",
+							"value": "Var ganska lätt.",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.gosemojs.org/training",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gosemojs",
+						"org"
+					],
+					"path": [
+						"training"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete training",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ca9b2937-0a29-4c55-a76c-929ae6d028ba",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "JWT {{token}}"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.gosemojs.org/training",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gosemojs",
+						"org"
+					],
+					"path": [
+						"training"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get hooks",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ca9b2937-0a29-4c55-a76c-929ae6d028ba",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "JWT {{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://api.gosemojs.org/hooks",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gosemojs",
+						"org"
+					],
+					"path": [
+						"hooks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Hook",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ca9b2937-0a29-4c55-a76c-929ae6d028ba",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "JWT {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "url",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.gosemojs.org/hooks",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gosemojs",
+						"org"
+					],
+					"path": [
+						"hooks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Hook",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ca9b2937-0a29-4c55-a76c-929ae6d028ba",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "JWT {{token}}"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.gosemojs.org/hooks",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gosemojs",
+						"org"
+					],
+					"path": [
+						"hooks"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

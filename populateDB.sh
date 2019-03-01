@@ -28,7 +28,7 @@ echo
 
 startTime=$(date -u)
 endTime=$(date -d '+1 hour' -u)
-body="{\"type\":\"run\",\"length\":\"1000\",\"startTime\":\"$startTime\",\"endTime\":\"$endTime\",\"comment\":\"sdflk\"}" 
+body="{\"type\":\"run\",\"length\":\"10000\",\"startTime\":\"$startTime\",\"endTime\":\"$endTime\",\"comment\":\"Easy run\"}" 
 
 echo "Add Training"
 # Post training
