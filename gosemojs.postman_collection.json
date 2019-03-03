@@ -61,12 +61,12 @@
 					"urlencoded": [
 						{
 							"key": "username",
-							"value": "",
+							"value": "testKille",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "",
+							"value": "testKille",
 							"type": "text"
 						},
 						{
@@ -92,7 +92,140 @@
 			"response": []
 		},
 		{
-			"name": "login",
+			"name": "Incorrect Add user because no fields",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ca9b2937-0a29-4c55-a76c-929ae6d028ba",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "JWT {{token}}",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "testKille",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "testKille",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "root@localhost.se",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.gosemojs.org/users",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gosemojs",
+						"org"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Incorrect Add user because to short username",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ca9b2937-0a29-4c55-a76c-929ae6d028ba",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "JWT {{token}}",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "t",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "testKille",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "root@localhost.se",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.gosemojs.org/users",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gosemojs",
+						"org"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Correct login",
 			"event": [
 				{
 					"listen": "test",
@@ -112,13 +245,105 @@
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+						"type": "text",
+						"value": "application/json"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\": \"\",\n    \"password\": \"\"\n}"
+					"raw": "{\n    \"username\": \"testKille\",\n    \"password\": \"testKille\"\n}"
+				},
+				"url": {
+					"raw": "https://api.gosemojs.org/users/login",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gosemojs",
+						"org"
+					],
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Incorrect login because wrong username/password",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ca9b2937-0a29-4c55-a76c-929ae6d028ba",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"token\", data.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"testKille\",\n    \"password\": \"Fellösenord\"\n}"
+				},
+				"url": {
+					"raw": "https://api.gosemojs.org/users/login",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gosemojs",
+						"org"
+					],
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Incorrect login because not all fields required",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ca9b2937-0a29-4c55-a76c-929ae6d028ba",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"token\", data.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"password\": \"Fellösenord\"\n}"
 				},
 				"url": {
 					"raw": "https://api.gosemojs.org/users/login",
@@ -236,88 +461,6 @@
 			"response": []
 		},
 		{
-			"name": "Edit Training",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "ca9b2937-0a29-4c55-a76c-929ae6d028ba",
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/x-www-form-urlencoded"
-					},
-					{
-						"key": "Authorization",
-						"type": "text",
-						"value": "JWT {{token}}"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "type",
-							"value": "Run",
-							"type": "text"
-						},
-						{
-							"key": "length",
-							"value": "10000",
-							"type": "text"
-						},
-						{
-							"key": "startTime",
-							"value": "Tue Mar 1 15:00:02 UTC 2019",
-							"type": "text",
-							"disabled": true
-						},
-						{
-							"key": "endTime",
-							"value": "Tue Mar 1 16:10:02 UTC 2019",
-							"type": "text",
-							"disabled": true
-						},
-						{
-							"key": "comment",
-							"value": "Var ganska tungt.",
-							"type": "text"
-						},
-						{
-							"key": "id",
-							"value": "5c7638e01a9d760114bc0248",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "127.0.0.1:8080/training",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "8080",
-					"path": [
-						"training"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Get Training",
 			"event": [
 				{
@@ -354,7 +497,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://api.gosemojs.org/training",
+					"raw": "https://api.gosemojs.org/training?start=0&offset=20",
 					"protocol": "https",
 					"host": [
 						"api",
@@ -363,6 +506,16 @@
 					],
 					"path": [
 						"training"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "0"
+						},
+						{
+							"key": "offset",
+							"value": "20"
+						}
 					]
 				}
 			},
@@ -443,6 +596,234 @@
 			"response": []
 		},
 		{
+			"name": "Incorrect Add Training because not all the fields required",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ca9b2937-0a29-4c55-a76c-929ae6d028ba",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "JWT {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "type",
+							"value": "Running",
+							"type": "text"
+						},
+						{
+							"key": "length",
+							"value": "10000",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "startTime",
+							"value": "Tue Mar 1 15:00:02 UTC 2019",
+							"type": "text"
+						},
+						{
+							"key": "endTime",
+							"value": "Tue Mar 1 16:10:02 UTC 2019",
+							"type": "text"
+						},
+						{
+							"key": "comment",
+							"value": "Var ganska lätt.",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.gosemojs.org/training",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gosemojs",
+						"org"
+					],
+					"path": [
+						"training"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Incorrect Add Training because validation of a field was not correct",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ca9b2937-0a29-4c55-a76c-929ae6d028ba",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "JWT {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "type",
+							"value": "Running",
+							"type": "text"
+						},
+						{
+							"key": "length",
+							"value": "10000",
+							"type": "text"
+						},
+						{
+							"key": "startTime",
+							"value": "Typ igår",
+							"type": "text"
+						},
+						{
+							"key": "endTime",
+							"value": "Tue Mar 1 16:10:02 UTC 2019",
+							"type": "text"
+						},
+						{
+							"key": "comment",
+							"value": "Var ganska lätt.",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.gosemojs.org/training",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gosemojs",
+						"org"
+					],
+					"path": [
+						"training"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Training",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ca9b2937-0a29-4c55-a76c-929ae6d028ba",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "JWT {{token}}"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "type",
+							"value": "Run",
+							"type": "text"
+						},
+						{
+							"key": "length",
+							"value": "10000",
+							"type": "text"
+						},
+						{
+							"key": "startTime",
+							"value": "Tue Mar 1 15:00:02 UTC 2019",
+							"type": "text"
+						},
+						{
+							"key": "endTime",
+							"value": "Tue Mar 1 16:10:02 UTC 2019",
+							"type": "text"
+						},
+						{
+							"key": "comment",
+							"value": "Ni kan välja själva vilka fields här. Förutom id som måste var med och korrekt",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "Detta måste vara valid id som du äger",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.gosemojs.org/training",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gosemojs",
+						"org"
+					],
+					"path": [
+						"training"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Delete training",
 			"event": [
 				{
@@ -477,6 +858,60 @@
 						{
 							"key": "id",
 							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.gosemojs.org/training",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gosemojs",
+						"org"
+					],
+					"path": [
+						"training"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete training You don't own",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ca9b2937-0a29-4c55-a76c-929ae6d028ba",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "JWT {{token}}"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "5c78de550b645900192ee906",
 							"type": "text"
 						}
 					]
@@ -581,7 +1016,115 @@
 					"urlencoded": [
 						{
 							"key": "url",
-							"value": "",
+							"value": "You really need a valid url here",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.gosemojs.org/hooks",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gosemojs",
+						"org"
+					],
+					"path": [
+						"hooks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Incorrect Add Hook because invalid url",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ca9b2937-0a29-4c55-a76c-929ae6d028ba",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "JWT {{token}}"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "url",
+							"value": "You really need a valid url here",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api.gosemojs.org/hooks",
+					"protocol": "https",
+					"host": [
+						"api",
+						"gosemojs",
+						"org"
+					],
+					"path": [
+						"hooks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Incorrect Add Hook because url don't respond",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ca9b2937-0a29-4c55-a76c-929ae6d028ba",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "JWT {{token}}"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "url",
+							"value": "http://www.madeUpSite.com/hook",
 							"type": "text"
 						}
 					]
@@ -635,7 +1178,7 @@
 					"urlencoded": [
 						{
 							"key": "id",
-							"value": "",
+							"value": "You need a correct id here",
 							"type": "text"
 						}
 					]
